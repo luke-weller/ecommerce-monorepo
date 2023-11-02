@@ -32,7 +32,6 @@ CREATE TABLE products (
   stock_quantity INTEGER
 );
 
-
 CREATE TABLE cart_items (
   id UUID PRIMARY KEY,
   cart_id UUID REFERENCES cart(id),
