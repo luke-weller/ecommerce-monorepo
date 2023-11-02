@@ -24,13 +24,14 @@ CREATE TABLE categories (
 );
 
 CREATE TABLE products (
-  id UUID PRIMARY KEY,
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
   name VARCHAR,
   price DECIMAL,
   description TEXT,
   category_id UUID REFERENCES categories(id),
   stock_quantity INTEGER
 );
+
 
 CREATE TABLE cart_items (
   id UUID PRIMARY KEY,
@@ -39,7 +40,6 @@ CREATE TABLE cart_items (
   quantity INTEGER
 );
 
--- Define the "orders" table
 CREATE TABLE orders (
   id UUID PRIMARY KEY,
   user_id UUID REFERENCES users(id),
