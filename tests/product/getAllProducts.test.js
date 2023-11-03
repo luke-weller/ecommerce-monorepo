@@ -4,7 +4,7 @@ const phantom = require("phantom");
 
 const apiUrl = "http://localhost:8080/products";
 
-describe("Get all products API", function () {
+describe("Get all the products API", function () {
   let instance, page;
 
   before(async function () {

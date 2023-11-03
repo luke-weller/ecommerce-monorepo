@@ -58,11 +58,3 @@ CREATE TABLE order_items (
   quantity INTEGER
 );
 
-CREATE TABLE product_reviews (
-  id UUID PRIMARY KEY,
-  user_id UUID REFERENCES users(id),
-  product_id UUID REFERENCES products(id),
-  rating INTEGER,
-  review_text TEXT,
-  created_at TIMESTAMP
-);

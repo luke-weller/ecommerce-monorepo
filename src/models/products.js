@@ -1,4 +1,4 @@
-const pool = require("../../config/database"); // Your database connection pool
+const pool = require("../../config/database");
 
 class Product {
   static async getAllProducts() {
