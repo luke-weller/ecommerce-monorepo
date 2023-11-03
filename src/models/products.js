@@ -1,3 +1,5 @@
+const { v4: uuidv4 } = require("uuid");
+
 const pool = require("../../config/database");
 
 class Product {
@@ -16,9 +18,14 @@ class Product {
   static async createProduct(productData) {
     const { name, price, description, category_id, stock_quantity } =
       productData;
+
+    const id = uuidv4();
+
     const query =
-      "INSERT INTO products (name, price, description, category_id, stock_quantity) VALUES ($1, $2, $3, $4, $5) RETURNING *";
-    const values = [name, price, description, category_id, stock_quantity];
+      "INSERT INTO products (id, name, price, description, category_id, stock_quantity) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *";
+
+    const values = [id, name, price, description, category_id, stock_quantity];
+
     const { rows } = await pool.query(query, values);
     return rows[0];
   }

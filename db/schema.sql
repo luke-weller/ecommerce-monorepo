@@ -24,7 +24,7 @@ CREATE TABLE categories (
 );
 
 CREATE TABLE products (
-  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  id UUID PRIMARY KEY,
   name VARCHAR,
   price DECIMAL,
   description TEXT,
