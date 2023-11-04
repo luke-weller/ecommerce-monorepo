@@ -22,7 +22,6 @@ describe("Get all the products API", function () {
     const status = await page.open(apiUrl);
 
     // Act:
-    console.log("Actual Status:", status);
     expect(status).to.equal("success");
 
     const content = await page.property("content");
