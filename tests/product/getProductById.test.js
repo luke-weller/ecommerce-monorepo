@@ -45,7 +45,7 @@ describe("Get Product by ID API", function () {
 
     const status = await page.open(url);
 
-    // Act: Check the status and fetch content
+    // Act:
     expect(status).to.equal("success");
 
     const content = await page.property("content");

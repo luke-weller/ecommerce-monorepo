@@ -1,7 +1,6 @@
 const chai = require("chai");
 const expect = chai.expect;
 const phantom = require("phantom");
-
 const apiUrl = "http://localhost:8080/products";
 
 describe("Get all the products API", function () {
@@ -44,5 +43,18 @@ describe("Get all the products API", function () {
       expect(product.price).to.be.a("string").that.is.not.empty;
       expect(product.description).to.be.a("string").that.is.not.empty;
     });
+  });
+
+  it("should handle server errors gracefully", async function () {
+    // Arrange:
+    const invalidApiUrl = "http://localhost:8080/invalid-endpoint";
+
+    // Act:
+    try {
+      await page.open(invalidApiUrl);
+    } catch (error) {
+      // Assert:
+      expect(error.message).to.include("fail to load");
+    }
   });
 });
