@@ -7,12 +7,13 @@ const productData = {
   name: "Test Product",
   price: "19.99",
   description: "A test product",
-  category_id: null,
+  category_id: "550e8400-e29b-41d4-a716-446655440000",
   stock_quantity: 10,
 };
 
 describe("Create Product API", function () {
   let instance, page;
+  let createdProductId;
 
   before(async function () {
     instance = await phantom.create();
@@ -20,6 +21,11 @@ describe("Create Product API", function () {
   });
 
   after(async function () {
+    if (createdProductId) {
+      const deleteUrl = `${apiUrl}/${createdProductId}`;
+      await request({ method: "DELETE", uri: deleteUrl });
+    }
+
     await page.close();
     await instance.exit();
   });
@@ -35,6 +41,8 @@ describe("Create Product API", function () {
 
     // Act:
     const response = await request(options);
+
+    createdProductId = response.id;
 
     // Assert:
     expect(response).to.be.an("object");
