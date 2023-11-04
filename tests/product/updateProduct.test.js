@@ -19,7 +19,6 @@ describe("Update Product API", function () {
     instance = await phantom.create();
     page = await instance.createPage();
 
-    // Create a product for testing the update
     const createOptions = {
       method: "POST",
       uri: apiUrl,
@@ -31,7 +30,6 @@ describe("Update Product API", function () {
   });
 
   after(async function () {
-    // Delete the product created for testing
     if (createdProductId) {
       const deleteUrl = `${apiUrl}/${createdProductId}`;
       await request({ method: "DELETE", uri: deleteUrl });

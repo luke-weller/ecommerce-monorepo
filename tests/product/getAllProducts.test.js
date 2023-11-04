@@ -46,7 +46,7 @@ describe("Get all the products API", function () {
   });
 
   it("should handle server errors gracefully", async function () {
-    // Arrange: Use an invalid API URL
+    // Arrange:
     const invalidApiUrl = "http://localhost:8080/invalid-endpoint";
 
     // Act:
