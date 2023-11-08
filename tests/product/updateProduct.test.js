@@ -3,11 +3,12 @@ const expect = chai.expect;
 const phantom = require("phantom");
 const request = require("request-promise");
 const apiUrl = "http://localhost:8080/products";
-const productData = {
+
+const setupProductData = {
   name: "Test Product",
   price: "19.99",
   description: "A test product",
-  category_id: "550e8400-e29b-41d4-a716-446655440000",
+  category_id: "fa62fb43-6e09-4485-b8d3-df4b7ce3353c",
   stock_quantity: 10,
 };
 
@@ -22,7 +23,7 @@ describe("Update Product API", function () {
     const createOptions = {
       method: "POST",
       uri: apiUrl,
-      body: productData,
+      body: setupProductData,
       json: true,
     };
     const response = await request(createOptions);
@@ -41,18 +42,18 @@ describe("Update Product API", function () {
 
   it("should update an existing product and return the updated data", async function () {
     // Arrange:
-    const updatedProductData = {
+    const updateProductData = {
       name: "Updated Product Name",
       price: "29.99",
       description: "Updated product description",
-      category_id: "550e8400-e29b-41d4-a716-446655440000",
+      category_id: "fa62fb43-6e09-4485-b8d3-df4b7ce3353c",
       stock_quantity: 20,
     };
 
     const updateOptions = {
       method: "PUT",
       uri: `${apiUrl}/${createdProductId}`,
-      body: updatedProductData,
+      body: updateProductData,
       json: true,
     };
 
@@ -69,10 +70,10 @@ describe("Update Product API", function () {
       "category_id",
       "stock_quantity",
     ]);
-    expect(response.name).to.equal(updatedProductData.name);
-    expect(response.price).to.equal(updatedProductData.price);
-    expect(response.description).to.equal(updatedProductData.description);
-    expect(response.category_id).to.equal(updatedProductData.category_id);
-    expect(response.stock_quantity).to.equal(updatedProductData.stock_quantity);
+    expect(response.name).to.equal(updateProductData.name);
+    expect(response.price).to.equal(updateProductData.price);
+    expect(response.description).to.equal(updateProductData.description);
+    expect(response.category_id).to.equal(updateProductData.category_id);
+    expect(response.stock_quantity).to.equal(updateProductData.stock_quantity);
   });
 });

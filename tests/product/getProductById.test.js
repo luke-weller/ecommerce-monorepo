@@ -19,7 +19,7 @@ describe("Get Product by ID API", function () {
 
   it("should retrieve a product when a valid ID is provided", async function () {
     // Arrange:
-    const validProductId = "cd006c70-f197-4b9e-ae82-75b957a20b45";
+    const validProductId = "2e484d02-b435-4896-a117-32ce23374bdb";
 
     const url = `${apiUrl}/${validProductId}`;
 

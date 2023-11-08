@@ -1,17 +1,14 @@
 CREATE TABLE users (
-  id UUID PRIMARY KEY,
+  email VARCHAR PRIMARY KEY,
+  password VARCHAR,
   first_name VARCHAR,
   last_name VARCHAR,
-  created_at TIMESTAMP,
-  billing_address_street VARCHAR,
-  billing_address_city VARCHAR,
-  billing_address_county VARCHAR,
-  billing_address_postcode VARCHAR
+  created_at TIMESTAMP
 );
 
 CREATE TABLE cart (
   id UUID PRIMARY KEY,
-  user_id UUID REFERENCES users(id),
+  users_email VARCHAR REFERENCES users(email),
   created_at TIMESTAMP,
   is_empty BOOLEAN,
   total_price DECIMAL
@@ -41,7 +38,7 @@ CREATE TABLE cart_items (
 
 CREATE TABLE orders (
   id UUID PRIMARY KEY,
-  user_id UUID REFERENCES users(id),
+  user_email VARCHAR REFERENCES users(email),
   created_at TIMESTAMP,
   order_status VARCHAR,
   total_price DECIMAL,

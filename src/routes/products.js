@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const createProduct = require("../contollers/productControllers/createProduct");
-const getAllProducts = require("../contollers/productControllers/getAllProducts");
-const getProductById = require("../contollers/productControllers/getProductById");
-const updateProduct = require("../contollers/productControllers/updateProduct");
-const deleteProduct = require("../contollers/productControllers/deleteProduct");
+const createProduct = require("../controllers/productControllers/createProduct");
+const getAllProducts = require("../controllers/productControllers/getAllProducts");
+const getProductById = require("../controllers/productControllers/getProductById");
+const updateProduct = require("../controllers/productControllers/updateProduct");
+const deleteProduct = require("../controllers/productControllers/deleteProduct");
 
 router.get("/", getAllProducts);
 router.get("/:productId", getProductById);
