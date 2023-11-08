@@ -3,6 +3,7 @@ const expect = chai.expect;
 const phantom = require("phantom");
 const request = require("request-promise");
 const apiUrl = "http://localhost:8080/products";
+
 const productData = {
   name: "Test Product",
   price: "19.99",
