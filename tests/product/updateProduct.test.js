@@ -7,7 +7,7 @@ const productData = {
   name: "Test Product",
   price: "19.99",
   description: "A test product",
-  category_id: "550e8400-e29b-41d4-a716-446655440000",
+  category_id: "fa62fb43-6e09-4485-b8d3-df4b7ce3353c",
   stock_quantity: 10,
 };
 
@@ -45,7 +45,7 @@ describe("Update Product API", function () {
       name: "Updated Product Name",
       price: "29.99",
       description: "Updated product description",
-      category_id: "550e8400-e29b-41d4-a716-446655440000",
+      category_id: "fa62fb43-6e09-4485-b8d3-df4b7ce3353c",
       stock_quantity: 20,
     };
 

@@ -5,8 +5,6 @@ const productsRoutes = require("./routes/products");
 
 const port = process.env.DEV_PORT;
 
-const pool = require("../config/database");
-
 app.use(bodyParser.json());
 
 app.use("/products", productsRoutes);
