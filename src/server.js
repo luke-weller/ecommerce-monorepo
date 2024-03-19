@@ -2,12 +2,15 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const productsRoutes = require("./routes/products");
+const usersRoutes = require("./routes/users");
 
 const port = process.env.DEV_PORT;
 
 app.use(bodyParser.json());
 
 app.use("/products", productsRoutes);
+
+app.use("/users", usersRoutes);
 
 app.get("/", (req, res) => {
   const apiInfo = {
