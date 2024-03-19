@@ -23,26 +23,53 @@ describe("Login API", function () {
     expect(response).to.have.status(200);
     expect(response).to.be.an("object");
     expect(response.body).to.have.all.keys(["message", "user"]);
-  });
 
-  it("response should contain the same email address provided", function () {
-    // Assert:
     expect(response.body.user.email).to.equal(userData.email);
     expect(response.body.user.email).to.be.a("string");
     expect(response.body.user.email).to.not.be.empty;
-  });
 
-  it("response should contain a first name for the user", function () {
-    // Assert:
     expect(response.body.user.first_name).to.not.be.undefined;
     expect(response.body.user.first_name).to.be.a("string");
     expect(response.body.user.first_name).to.not.be.empty;
-  });
 
-  it("response should contain a last name for the user", function () {
-    // Assert:
     expect(response.body.user.last_name).to.not.be.undefined;
     expect(response.body.user.last_name).to.be.a("string");
     expect(response.body.user.last_name).to.not.be.empty;
+  });
+
+  it("should return 401 for invalid email", async function () {
+    // Arrange:
+    const invalidEmailData = {
+      email: "invalid_email",
+      password: "password123",
+    };
+
+    // Act:
+    const response = await chai
+      .request(apiUrl)
+      .post("/")
+      .send(invalidEmailData);
+
+    // Assert:
+    expect(response).to.have.status(401);
+    expect(response.body.error).to.equal("Incorrect email or password");
+  });
+
+  it("should return 401 for invalid password but valid email", async function () {
+    // Arrange:
+    const invalidEmailData = {
+      email: "example@email.com",
+      password: "wrong-password",
+    };
+
+    // Act:
+    const response = await chai
+      .request(apiUrl)
+      .post("/")
+      .send(invalidEmailData);
+
+    // Assert:
+    expect(response).to.have.status(401);
+    expect(response.body.error).to.equal("Incorrect email or password");
   });
 });

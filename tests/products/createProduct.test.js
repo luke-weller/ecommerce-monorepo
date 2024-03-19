@@ -1,7 +1,9 @@
 const chai = require("chai");
+const chaiHttp = require("chai-http");
 const expect = chai.expect;
-const phantom = require("phantom");
-const request = require("request-promise");
+
+chai.use(chaiHttp);
+
 const apiUrl = "http://localhost:8080/products";
 const productData = {
   name: "Test Product",
@@ -12,41 +14,28 @@ const productData = {
 };
 
 describe("Create Product API", function () {
-  let instance, page;
   let createdProductId;
-
-  before(async function () {
-    instance = await phantom.create();
-    page = await instance.createPage();
-  });
 
   after(async function () {
     if (createdProductId) {
-      const deleteUrl = `${apiUrl}/${createdProductId}`;
-      await request({ method: "DELETE", uri: deleteUrl });
+      try {
+        await chai.request(apiUrl).delete(`/${createdProductId}`);
+      } catch (error) {
+        console.error("Error deleting created product:", error.message);
+      }
     }
-
-    await page.close();
-    await instance.exit();
   });
 
   it("should create a new product and return it in the response", async function () {
-    // Arrange:
-    const options = {
-      method: "POST",
-      uri: apiUrl,
-      body: productData,
-      json: true,
-    };
-
     // Act:
-    const response = await request(options);
+    const response = await chai.request(apiUrl).post("/").send(productData);
 
-    createdProductId = response.id;
+    createdProductId = response.body.id;
 
     // Assert:
-    expect(response).to.be.an("object");
-    expect(response).to.have.all.keys([
+    expect(response).to.have.status(201);
+    expect(response.body).to.be.an("object");
+    expect(response.body).to.have.all.keys([
       "id",
       "name",
       "price",
@@ -54,10 +43,34 @@ describe("Create Product API", function () {
       "category_id",
       "stock_quantity",
     ]);
-    expect(response.name).to.equal(productData.name);
-    expect(response.price).to.equal(productData.price);
-    expect(response.description).to.equal(productData.description);
-    expect(response.category_id).to.equal(productData.category_id);
-    expect(response.stock_quantity).to.equal(productData.stock_quantity);
+    expect(response.body.name).to.equal(productData.name);
+    expect(response.body.price).to.equal(productData.price);
+    expect(response.body.description).to.equal(productData.description);
+    expect(response.body.category_id).to.equal(productData.category_id);
+    expect(response.body.stock_quantity).to.equal(productData.stock_quantity);
+  });
+
+  it("should create a new product and return it in the response", async function () {
+    // Act:
+    const response = await chai.request(apiUrl).post("/").send(productData);
+
+    createdProductId = response.body.id;
+
+    // Assert:
+    expect(response).to.have.status(201);
+    expect(response.body).to.be.an("object");
+    expect(response.body).to.have.all.keys([
+      "id",
+      "name",
+      "price",
+      "description",
+      "category_id",
+      "stock_quantity",
+    ]);
+    expect(response.body.name).to.equal(productData.name);
+    expect(response.body.price).to.equal(productData.price);
+    expect(response.body.description).to.equal(productData.description);
+    expect(response.body.category_id).to.equal(productData.category_id);
+    expect(response.body.stock_quantity).to.equal(productData.stock_quantity);
   });
 });

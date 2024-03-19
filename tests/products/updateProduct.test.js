@@ -1,7 +1,9 @@
 const chai = require("chai");
+const chaiHttp = require("chai-http");
 const expect = chai.expect;
-const phantom = require("phantom");
-const request = require("request-promise");
+
+chai.use(chaiHttp);
+
 const apiUrl = "http://localhost:8080/products";
 const productData = {
   name: "Test Product",
@@ -12,31 +14,19 @@ const productData = {
 };
 
 describe("Update Product API", function () {
-  let instance, page;
   let createdProductId;
 
   before(async function () {
-    instance = await phantom.create();
-    page = await instance.createPage();
-
-    const createOptions = {
-      method: "POST",
-      uri: apiUrl,
-      body: productData,
-      json: true,
-    };
-    const response = await request(createOptions);
-    createdProductId = response.id;
+    const response = await chai.request(apiUrl).post("/").send(productData);
+    createdProductId = response.body.id;
   });
 
   after(async function () {
     if (createdProductId) {
-      const deleteUrl = `${apiUrl}/${createdProductId}`;
-      await request({ method: "DELETE", uri: deleteUrl });
+      const response = await chai
+        .request(apiUrl)
+        .delete(`/${createdProductId}`);
     }
-
-    await page.close();
-    await instance.exit();
   });
 
   it("should update an existing product and return the updated data", async function () {
@@ -49,19 +39,16 @@ describe("Update Product API", function () {
       stock_quantity: 20,
     };
 
-    const updateOptions = {
-      method: "PUT",
-      uri: `${apiUrl}/${createdProductId}`,
-      body: updatedProductData,
-      json: true,
-    };
-
     // Act:
-    const response = await request(updateOptions);
+    const response = await chai
+      .request(apiUrl)
+      .put(`/${createdProductId}`)
+      .send(updatedProductData);
 
     // Assert:
-    expect(response).to.be.an("object");
-    expect(response).to.have.all.keys([
+    expect(response).to.have.status(200);
+    expect(response.body).to.be.an("object");
+    expect(response.body).to.have.all.keys([
       "id",
       "name",
       "price",
@@ -69,10 +56,12 @@ describe("Update Product API", function () {
       "category_id",
       "stock_quantity",
     ]);
-    expect(response.name).to.equal(updatedProductData.name);
-    expect(response.price).to.equal(updatedProductData.price);
-    expect(response.description).to.equal(updatedProductData.description);
-    expect(response.category_id).to.equal(updatedProductData.category_id);
-    expect(response.stock_quantity).to.equal(updatedProductData.stock_quantity);
+    expect(response.body.name).to.equal(updatedProductData.name);
+    expect(response.body.price).to.equal(updatedProductData.price);
+    expect(response.body.description).to.equal(updatedProductData.description);
+    expect(response.body.category_id).to.equal(updatedProductData.category_id);
+    expect(response.body.stock_quantity).to.equal(
+      updatedProductData.stock_quantity
+    );
   });
 });

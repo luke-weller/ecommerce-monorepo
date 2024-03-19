@@ -1,7 +1,9 @@
 const chai = require("chai");
+const chaiHttp = require("chai-http");
 const expect = chai.expect;
-const phantom = require("phantom");
-const request = require("request-promise");
+
+chai.use(chaiHttp);
+
 const apiUrl = "http://localhost:8080/users/register";
 const userData = {
   email: "example6@email.com",
@@ -11,33 +13,14 @@ const userData = {
 };
 
 describe("Register user API", function () {
-  let instance, page;
-
-  before(async function () {
-    instance = await phantom.create();
-    page = await instance.createPage();
-  });
-
-  after(async function () {
-    await page.close();
-    await instance.exit();
-  });
-
   it("should register a new user and return it in the response", async function () {
-    // Arrange:
-    const options = {
-      method: "POST",
-      uri: apiUrl,
-      body: userData,
-      json: true,
-    };
-
     // Act:
-    const response = await request(options);
+    const response = await chai.request(apiUrl).post("/").send(userData);
 
     // Assert:
-    expect(response).to.be.an("object");
-    expect(response).to.have.all.keys([
+    expect(response).to.have.status(201);
+    expect(response.body).to.be.an("object");
+    expect(response.body).to.have.all.keys([
       "id",
       "email",
       "password",
@@ -45,8 +28,8 @@ describe("Register user API", function () {
       "last_name",
       "created_at",
     ]);
-    expect(response.email).to.equal(userData.email);
-    expect(response.first_name).to.equal(userData.first_name);
-    expect(response.last_name).to.equal(userData.last_name);
+    expect(response.body.email).to.equal(userData.email);
+    expect(response.body.first_name).to.equal(userData.first_name);
+    expect(response.body.last_name).to.equal(userData.last_name);
   });
 });

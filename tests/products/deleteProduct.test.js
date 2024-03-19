@@ -1,7 +1,9 @@
 const chai = require("chai");
+const chaiHttp = require("chai-http");
 const expect = chai.expect;
-const phantom = require("phantom");
-const request = require("request-promise");
+
+chai.use(chaiHttp);
+
 const apiUrl = "http://localhost:8080/products";
 const productData = {
   name: "Test Product",
@@ -12,51 +14,30 @@ const productData = {
 };
 
 describe("Delete Product API", function () {
-  let instance, page;
   let createdProductId;
 
   before(async function () {
-    instance = await phantom.create();
-    page = await instance.createPage();
-
-    const createOptions = {
-      method: "POST",
-      uri: apiUrl,
-      body: productData,
-      json: true,
-    };
-    const response = await request(createOptions);
-    createdProductId = response.id;
-  });
-
-  after(async function () {
-    await page.close();
-    await instance.exit();
+    // Create a product before each test
+    const response = await chai.request(apiUrl).post("/").send(productData);
+    createdProductId = response.body.id;
   });
 
   it("should delete an existing product and return a 204 status", async function () {
-    // Arrange:
-    const deleteOptions = {
-      method: "DELETE",
-      uri: `${apiUrl}/${createdProductId}`,
-      resolveWithFullResponse: true,
-    };
-
     // Act:
-    const response = await request(deleteOptions);
+    const response = await chai.request(apiUrl).delete(`/${createdProductId}`);
 
     // Assert:
-    expect(response.statusCode).to.equal(204);
+    expect(response).to.have.status(204);
 
-    const getProductOptions = {
-      method: "GET",
-      uri: `${apiUrl}/${createdProductId}`,
-    };
-
+    // Verify that the product is deleted by attempting to fetch it
     try {
-      await request(getProductOptions);
+      const getProductResponse = await chai
+        .request(apiUrl)
+        .get(`/${createdProductId}`);
+      expect(getProductResponse).to.have.status(404); // Expecting 404 as the product should not exist
     } catch (error) {
-      expect(error.statusCode).to.equal(404);
+      // If the product fetch fails with a 404, it indicates successful deletion
+      expect(error.response).to.have.status(404);
     }
   });
 });
