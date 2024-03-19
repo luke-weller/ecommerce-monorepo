@@ -1,12 +1,9 @@
 CREATE TABLE users (
   id UUID PRIMARY KEY,
+  email VARCHAR,
   first_name VARCHAR,
   last_name VARCHAR,
-  created_at TIMESTAMP,
-  billing_address_street VARCHAR,
-  billing_address_city VARCHAR,
-  billing_address_county VARCHAR,
-  billing_address_postcode VARCHAR
+  created_at TIMESTAMP
 );
 
 CREATE TABLE cart (
