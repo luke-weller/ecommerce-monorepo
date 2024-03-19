@@ -1,8 +1,8 @@
 const Product = require("../../models/products");
 
-async function getAllProducts(req, res) {
+async function getAllProductsController(req, res) {
   try {
-    const products = await Product.getAllProducts();
+    const products = await Product.getAllProductsController();
     res.status(200).json(products);
   } catch (error) {
     console.error(error);
@@ -10,4 +10,4 @@ async function getAllProducts(req, res) {
   }
 }
 
-module.exports = getAllProducts;
+module.exports = getAllProductsController;

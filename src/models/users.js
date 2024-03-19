@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require("uuid");
 const pool = require("../../config/database");
 
 class User {
-  static async registerUser(userData) {
+  static async registerController(userData) {
     const { email, password, first_name, last_name } = userData;
 
     const id = uuidv4();

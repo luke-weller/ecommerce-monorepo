@@ -1,9 +1,9 @@
 const Product = require("../../models/products");
 
-async function createProduct(req, res) {
+async function createProductController(req, res) {
   const productData = req.body;
   try {
-    const newProduct = await Product.createProduct(productData);
+    const newProduct = await Product.createProductController(productData);
     res.status(201).json(newProduct);
   } catch (error) {
     console.error(error);
@@ -11,4 +11,4 @@ async function createProduct(req, res) {
   }
 }
 
-module.exports = createProduct;
+module.exports = createProductController;

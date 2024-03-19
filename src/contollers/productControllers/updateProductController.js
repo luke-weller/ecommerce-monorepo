@@ -1,10 +1,13 @@
 const Product = require("../../models/products");
 
-async function updateProduct(req, res) {
+async function updateProductController(req, res) {
   const { productId } = req.params;
   const productData = req.body;
   try {
-    const updatedProduct = await Product.updateProduct(productId, productData);
+    const updatedProduct = await Product.updateProductController(
+      productId,
+      productData
+    );
     if (!updatedProduct) {
       res.status(404).json({ error: "Product not found" });
     } else {
@@ -16,4 +19,4 @@ async function updateProduct(req, res) {
   }
 }
 
-module.exports = updateProduct;
+module.exports = updateProductController;

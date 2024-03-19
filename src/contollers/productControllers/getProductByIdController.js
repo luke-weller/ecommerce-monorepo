@@ -1,9 +1,9 @@
 const Product = require("../../models/products");
 
-async function getProductById(req, res) {
+async function getProductByIdController(req, res) {
   const { productId } = req.params;
   try {
-    const product = await Product.getProductById(productId);
+    const product = await Product.getProductByIdController(productId);
     if (!product) {
       res.status(404).json({ error: "Product not found" });
     } else {
@@ -15,4 +15,4 @@ async function getProductById(req, res) {
   }
 }
 
-module.exports = getProductById;
+module.exports = getProductByIdController;

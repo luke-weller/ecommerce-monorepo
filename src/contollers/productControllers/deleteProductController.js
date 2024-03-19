@@ -1,9 +1,9 @@
 const Product = require("../../models/products");
 
-async function deleteProduct(req, res) {
+async function deleteProductController(req, res) {
   const { productId } = req.params;
   try {
-    const deletedProduct = await Product.deleteProduct(productId);
+    const deletedProduct = await Product.deleteProductController(productId);
     if (!deletedProduct) {
       res.status(404).json({ error: "Product not found" });
     } else {
@@ -15,4 +15,4 @@ async function deleteProduct(req, res) {
   }
 }
 
-module.exports = deleteProduct;
+module.exports = deleteProductController;
