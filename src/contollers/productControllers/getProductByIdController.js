@@ -3,7 +3,7 @@ const Product = require("../../models/products");
 async function getProductByIdController(req, res) {
   const { productId } = req.params;
   try {
-    const product = await Product.getProductByIdController(productId);
+    const product = await Product.getProductById(productId);
     if (!product) {
       res.status(404).json({ error: "Product not found" });
     } else {

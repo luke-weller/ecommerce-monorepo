@@ -3,7 +3,7 @@ const Product = require("../../models/products");
 async function createProductController(req, res) {
   const productData = req.body;
   try {
-    const newProduct = await Product.createProductController(productData);
+    const newProduct = await Product.createProduct(productData);
     res.status(201).json(newProduct);
   } catch (error) {
     console.error(error);

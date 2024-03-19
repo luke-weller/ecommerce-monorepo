@@ -4,10 +4,7 @@ async function updateProductController(req, res) {
   const { productId } = req.params;
   const productData = req.body;
   try {
-    const updatedProduct = await Product.updateProductController(
-      productId,
-      productData
-    );
+    const updatedProduct = await Product.updateProduct(productId, productData);
     if (!updatedProduct) {
       res.status(404).json({ error: "Product not found" });
     } else {
