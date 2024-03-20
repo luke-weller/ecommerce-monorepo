@@ -8,7 +8,7 @@ class Category {
     const id = uuidv4();
 
     const query =
-      "INSERT INTO cateogry (id, name, description) VALUES ($1, $2, $3) RETURNING *";
+      "INSERT INTO categories (id, name, description) VALUES ($1, $2, $3) RETURNING *";
     const values = [id, name, description];
     const { rows } = await pool.query(query, values);
     return rows[0];

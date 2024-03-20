@@ -1,3 +1,4 @@
+const generateProduct = require("../utils/factories/productFactory");
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const expect = chai.expect;
@@ -7,16 +8,29 @@ chai.use(chaiHttp);
 const apiUrl = "http://localhost:8080/products";
 
 describe("Get Product by ID API", function () {
-  it("should retrieve a product when a valid ID is provided", async function () {
-    // Arrange:
-    const validProductId = "129253ae-e6d8-4ec3-ab6c-4de386c06f89";
+  before(async function () {
+    const productData = await generateProduct();
+    const response = await chai.request(apiUrl).post("/").send(productData);
+    createdProductId = response.body.id;
+  });
 
+  after(async function () {
+    if (createdProductId) {
+      try {
+        await chai.request(apiUrl).delete(`/${createdProductId}`);
+      } catch (error) {
+        console.error("Error deleting created product:", error.message);
+      }
+    }
+  });
+
+  it("should retrieve a product when a valid ID is provided", async function () {
     // Act:
-    const response = await chai.request(apiUrl).get(`/${validProductId}`);
+    const response = await chai.request(apiUrl).get(`/${createdProductId}`);
 
     // Assert:
     expect(response).to.have.status(200);
-    expect(response.body).to.have.property("id").equal(validProductId);
+    expect(response.body).to.have.property("id").equal(createdProductId);
     expect(response.body).to.have.property("name").to.be.a("string");
   });
 

@@ -26,6 +26,12 @@ class User {
     const { rows } = await pool.query(query, values);
     return rows[0];
   }
+
+  static async deleteUser(userId) {
+    const query = "DELETE FROM users WHERE id = $1 RETURNING *";
+    const { rows } = await pool.query(query, [userId]);
+    return rows[0];
+  }
 }
 
 module.exports = User;

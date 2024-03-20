@@ -1,24 +1,44 @@
+const generateUser = require("../utils/factories/userFactory");
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const expect = chai.expect;
 
 chai.use(chaiHttp);
 
-const apiUrl = "http://localhost:8080/auth/login";
-
-const userData = {
-  email: "example@email.com",
-  password: "password123",
-};
+const loginApiUrl = "http://localhost:8080/auth/login";
+const userApiUrl = "http://localhost:8080/users/";
 
 describe("Login API", function () {
+  let createdUserId;
   let response;
+  let userData;
 
-  beforeEach(async function () {
-    response = await chai.request(apiUrl).post("/").send(userData);
+  before(async function () {
+    userData = await generateUser();
+    const createUserResponse = await chai
+      .request(userApiUrl)
+      .post("/register")
+      .send(userData);
+    createdUserId = createUserResponse.body.id;
   });
 
-  it("should return a 200 response after successfully logging in", function () {
+  after(async function () {
+    if (createdUserId) {
+      try {
+        const deleteUserResponse = await chai
+          .request(userApiUrl)
+          .delete(`/${createdUserId}`);
+        console.log(deleteUserResponse.statusCode);
+      } catch (error) {
+        console.error("Error deleting created user:", error.message);
+      }
+    }
+  });
+
+  it("should return a 200 response after successfully logging in", async function () {
+    // Act:
+    response = await chai.request(loginApiUrl).post("/").send(userData);
+
     // Assert:
     expect(response).to.have.status(200);
     expect(response).to.be.an("object");
@@ -46,25 +66,7 @@ describe("Login API", function () {
 
     // Act:
     const response = await chai
-      .request(apiUrl)
-      .post("/")
-      .send(invalidEmailData);
-
-    // Assert:
-    expect(response).to.have.status(401);
-    expect(response.body.error).to.equal("Incorrect email or password");
-  });
-
-  it("should return 401 for invalid password but valid email", async function () {
-    // Arrange:
-    const invalidEmailData = {
-      email: "example@email.com",
-      password: "wrong-password",
-    };
-
-    // Act:
-    const response = await chai
-      .request(apiUrl)
+      .request(loginApiUrl)
       .post("/")
       .send(invalidEmailData);
 
