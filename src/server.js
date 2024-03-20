@@ -2,9 +2,11 @@ const express = require("express");
 const session = require("express-session");
 const passport = require("../config/passport-config");
 const bodyParser = require("body-parser");
+
 const productsRoutes = require("./routes/products");
 const usersRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
+const categoryRoutes = require("./routes/category");
 
 const app = express();
 const port = process.env.DEV_PORT;
@@ -27,6 +29,8 @@ app.use("/products", productsRoutes);
 app.use("/users", usersRoutes);
 
 app.use("/auth", authRoutes);
+
+app.use("/category", categoryRoutes);
 
 app.get("/", (req, res) => {
   const apiInfo = {
