@@ -28,7 +28,6 @@ describe("Login API", function () {
         const deleteUserResponse = await chai
           .request(userApiUrl)
           .delete(`/${createdUserId}`);
-        console.log(deleteUserResponse.statusCode);
       } catch (error) {
         console.error("Error deleting created user:", error.message);
       }

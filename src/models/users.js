@@ -32,6 +32,12 @@ class User {
     const { rows } = await pool.query(query, [userId]);
     return rows[0];
   }
+
+  static async getUserByEmail(userEmail) {
+    const query = "SELECT * FROM users WHERE email = $1";
+    const { rows } = await pool.query(query, [userEmail]);
+    return rows[0];
+  }
 }
 
 module.exports = User;

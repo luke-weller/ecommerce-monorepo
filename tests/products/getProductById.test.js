@@ -8,6 +8,8 @@ chai.use(chaiHttp);
 const apiUrl = "http://localhost:8080/products";
 
 describe("Get Product by ID API", function () {
+  let createdProductId;
+
   before(async function () {
     const productData = await generateProduct();
     const response = await chai.request(apiUrl).post("/").send(productData);

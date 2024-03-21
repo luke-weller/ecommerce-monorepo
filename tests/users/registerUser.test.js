@@ -13,7 +13,7 @@ describe("Register user API", function () {
   let userData;
 
   before(async function () {
-    userData = await generateUser();
+    userData = generateUser();
   });
 
   after(async function () {
@@ -22,7 +22,6 @@ describe("Register user API", function () {
         const deleteUserResponse = await chai
           .request(userApiUrl)
           .delete(`/${createdUserId}`);
-        console.log(deleteUserResponse.statusCode);
       } catch (error) {
         console.error("Error deleting created user:", error.message);
       }
