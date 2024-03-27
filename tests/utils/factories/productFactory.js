@@ -6,18 +6,12 @@ chai.use(chaiHttp);
 
 const apiUrl = "http://localhost:8080";
 
-const mockProductData = async () => {
-  const categoryResponse = await chai.request(apiUrl).post("/category").send({
-    name: faker.commerce.department(),
-    description: faker.lorem.sentence(),
-  });
-  const category_id = categoryResponse.body.id;
-
+const mockProductData = async (categoryId) => {
   return {
     name: faker.commerce.productName(),
     price: faker.commerce.price(),
     description: faker.lorem.sentence(),
-    category_id: category_id,
+    category_id: categoryId,
     stock_quantity: faker.number.int({ min: 1, max: 100 }),
   };
 };

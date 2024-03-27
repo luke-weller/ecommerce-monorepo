@@ -13,6 +13,12 @@ class Category {
     const { rows } = await pool.query(query, values);
     return rows[0];
   }
+
+  static async deleteCategory(categoryId) {
+    const query = "DELETE FROM categories WHERE id = $1 RETURNING *";
+    const { rows } = await pool.query(query, [categoryId]);
+    return rows[0];
+  }
 }
 
 module.exports = Category;

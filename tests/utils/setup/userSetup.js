@@ -7,7 +7,7 @@ chai.use(chaiHttp);
 const apiUrl = "http://localhost:8080";
 
 const userSetup = async () => {
-  const userData = await mockUserData();
+  const userData = mockUserData();
   const response = await chai
     .request(apiUrl)
     .post("/users/register")

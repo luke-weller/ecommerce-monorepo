@@ -1,4 +1,5 @@
 const mockProductData = require("../utils/factories/productFactory");
+const { categorySetup } = require("../utils/setup/categorySetup");
 const { productTeardown } = require("../utils/setup/productSetup");
 
 const chai = require("chai");
@@ -10,18 +11,19 @@ chai.use(chaiHttp);
 const apiUrl = "http://localhost:8080/products";
 
 describe("Create Product API", function () {
-  let createdProductId;
+  let createdProduct;
+  let productData;
 
   after(async function () {
-    await productTeardown(createdProductId);
+    await productTeardown(createdProduct);
   });
 
   it("should create a new product and return it in the response", async function () {
     // Act:
-    const productData = await mockProductData();
+    const categoryData = await categorySetup();
+    productData = await mockProductData(categoryData.id);
     const response = await chai.request(apiUrl).post("/").send(productData);
-
-    createdProductId = response.body.id;
+    createdProduct = response.body;
 
     // Assert:
     expect(response).to.have.status(201);

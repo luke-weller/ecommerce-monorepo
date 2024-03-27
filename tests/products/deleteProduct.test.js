@@ -1,4 +1,5 @@
 const { productSetup } = require("../utils/setup/productSetup");
+const { categoryTeardown } = require("../utils/setup/categorySetup");
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const expect = chai.expect;
@@ -14,12 +15,16 @@ describe("Delete Product API", function () {
     createdProduct = await productSetup();
   });
 
-  it("should delete an existing product and return a 204 status", async function () {
+  after(async function () {
+    await categoryTeardown(createdProduct.category_id);
+  });
+
+  it("should delete an existing product and return a 202 status", async function () {
     // Act:
     const response = await chai.request(apiUrl).delete(`/${createdProduct.id}`);
 
     // Assert:
-    expect(response).to.have.status(204);
+    expect(response).to.have.status(202);
 
     try {
       const getProductResponse = await chai

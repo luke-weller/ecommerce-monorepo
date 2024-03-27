@@ -18,7 +18,7 @@ describe("Get Product by ID API", function () {
   });
 
   after(async function () {
-    await productTeardown(createdProduct.id);
+    await productTeardown(createdProduct);
   });
 
   it("should retrieve a product when a valid ID is provided", async function () {

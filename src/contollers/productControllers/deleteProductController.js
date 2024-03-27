@@ -7,7 +7,7 @@ async function deleteProductController(req, res) {
     if (!deletedProduct) {
       res.status(404).json({ error: "Product not found" });
     } else {
-      res.status(204).end("Product successfully deleted");
+      res.status(202).end("Product successfully deleted");
     }
   } catch (error) {
     console.error(error);

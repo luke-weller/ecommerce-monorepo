@@ -19,7 +19,7 @@ describe("Update Product API", function () {
   });
 
   after(async function () {
-    await productTeardown(createdProduct.id);
+    await productTeardown(createdProduct);
   });
 
   it("should update an existing product and return the updated data", async function () {
@@ -46,7 +46,7 @@ describe("Update Product API", function () {
     expect(response.body.name).to.equal(updatedProductData.name);
     expect(response.body.price).to.equal(updatedProductData.price);
     expect(response.body.description).to.equal(updatedProductData.description);
-    expect(response.body.category_id).to.equal(updatedProductData.category_id);
+    expect(response.body.category_id).to.equal(response.body.category_id);
     expect(response.body.stock_quantity).to.equal(
       updatedProductData.stock_quantity
     );

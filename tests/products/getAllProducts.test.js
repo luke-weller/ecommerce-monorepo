@@ -18,7 +18,7 @@ describe("Get all the products API", function () {
   });
 
   after(async function () {
-    await productTeardown(createdProduct.id);
+    await productTeardown(createdProduct);
   });
 
   it("should retrieve all products with the expected format", async function () {

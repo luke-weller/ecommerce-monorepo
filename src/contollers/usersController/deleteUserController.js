@@ -7,7 +7,7 @@ async function deleteUserController(req, res) {
     if (!deletedUser) {
       res.status(404).json({ error: "user not found" });
     } else {
-      res.status(204).end();
+      res.status(202).end();
     }
   } catch (error) {
     console.error(error);
