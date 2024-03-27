@@ -25,11 +25,8 @@ app.use(passport.session());
 app.use(bodyParser.json());
 
 app.use("/products", productsRoutes);
-
 app.use("/users", usersRoutes);
-
 app.use("/auth", authRoutes);
-
 app.use("/category", categoryRoutes);
 
 app.get("/", (req, res) => {

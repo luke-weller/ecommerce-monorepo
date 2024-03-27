@@ -19,6 +19,15 @@ class Category {
     const { rows } = await pool.query(query, [categoryId]);
     return rows[0];
   }
+
+  static async updateCategory(categoryId, categoryData) {
+    const { name, description } = categoryData;
+    const query =
+      "UPDATE categories SET name = $1, description = $2 WHERE id = $3 RETURNING *";
+    const values = [name, description, categoryId];
+    const { rows } = await pool.query(query, values);
+    return rows[0];
+  }
 }
 
 module.exports = Category;
