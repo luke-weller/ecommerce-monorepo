@@ -1,6 +1,6 @@
 const { faker } = require("@faker-js/faker");
 
-const generateUser = () => {
+const mockUserData = () => {
   return {
     email: faker.internet.email(),
     first_name: faker.person.firstName(),
@@ -9,4 +9,4 @@ const generateUser = () => {
   };
 };
 
-module.exports = generateUser;
+module.exports = mockUserData;

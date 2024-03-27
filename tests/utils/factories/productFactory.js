@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 
 const apiUrl = "http://localhost:8080";
 
-const generateProduct = async () => {
+const mockProductData = async () => {
   const categoryResponse = await chai.request(apiUrl).post("/category").send({
     name: faker.commerce.department(),
     description: faker.lorem.sentence(),
@@ -22,4 +22,4 @@ const generateProduct = async () => {
   };
 };
 
-module.exports = generateProduct;
+module.exports = mockProductData;

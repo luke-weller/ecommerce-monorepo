@@ -1,4 +1,4 @@
-const generateUser = require("../utils/factories/userFactory");
+const mockUserData = require("../utils/factories/userFactory");
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const expect = chai.expect;
@@ -14,7 +14,7 @@ describe("Login API", function () {
   let userData;
 
   before(async function () {
-    userData = await generateUser();
+    userData = await mockUserData();
     const createUserResponse = await chai
       .request(userApiUrl)
       .post("/register")

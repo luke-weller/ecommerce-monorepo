@@ -1,4 +1,6 @@
-const generateProduct = require("../utils/factories/productFactory");
+const mockProductData = require("../utils/factories/productFactory");
+const { productTeardown } = require("../utils/setup/productSetup");
+
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const expect = chai.expect;
@@ -11,18 +13,12 @@ describe("Create Product API", function () {
   let createdProductId;
 
   after(async function () {
-    if (createdProductId) {
-      try {
-        await chai.request(apiUrl).delete(`/${createdProductId}`);
-      } catch (error) {
-        console.error("Error deleting created product:", error.message);
-      }
-    }
+    await productTeardown(createdProductId);
   });
 
   it("should create a new product and return it in the response", async function () {
     // Act:
-    const productData = await generateProduct();
+    const productData = await mockProductData();
     const response = await chai.request(apiUrl).post("/").send(productData);
 
     createdProductId = response.body.id;

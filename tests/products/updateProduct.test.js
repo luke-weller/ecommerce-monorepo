@@ -1,4 +1,8 @@
-const generateProduct = require("../utils/factories/productFactory");
+const mockProductData = require("../utils/factories/productFactory");
+const {
+  productSetup,
+  productTeardown,
+} = require("../utils/setup/productSetup");
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const expect = chai.expect;
@@ -8,32 +12,24 @@ chai.use(chaiHttp);
 const apiUrl = "http://localhost:8080/products";
 
 describe("Update Product API", function () {
-  let createdProductId;
+  let createdProduct;
 
   before(async function () {
-    const productData = await generateProduct();
-    const response = await chai.request(apiUrl).post("/").send(productData);
-    createdProductId = response.body.id;
+    createdProduct = await productSetup();
   });
 
   after(async function () {
-    if (createdProductId) {
-      try {
-        await chai.request(apiUrl).delete(`/${createdProductId}`);
-      } catch (error) {
-        console.error("Error deleting created product:", error.message);
-      }
-    }
+    await productTeardown(createdProduct.id);
   });
 
   it("should update an existing product and return the updated data", async function () {
     // Arrange:
-    const updatedProductData = await generateProduct();
+    const updatedProductData = await mockProductData();
 
     // Act:
     const response = await chai
       .request(apiUrl)
-      .put(`/${createdProductId}`)
+      .put(`/${createdProduct.id}`)
       .send(updatedProductData);
 
     // Assert:
