@@ -38,6 +38,15 @@ class User {
     const { rows } = await pool.query(query, [userEmail]);
     return rows[0];
   }
+
+  static async updateUser(userId, userData) {
+    const { email, first_name, last_name } = userData;
+    const query =
+      "UPDATE users SET email = $1, first_name = $2, last_name = $3 WHERE id = $4 RETURNING *";
+    const values = [email, first_name, last_name, userId];
+    const { rows } = await pool.query(query, values);
+    return rows[0];
+  }
 }
 
 module.exports = User;

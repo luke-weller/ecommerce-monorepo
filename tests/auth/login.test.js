@@ -25,9 +25,7 @@ describe("Login API", function () {
   after(async function () {
     if (createdUserId) {
       try {
-        const deleteUserResponse = await chai
-          .request(userApiUrl)
-          .delete(`/${createdUserId}`);
+        await chai.request(userApiUrl).delete(`/${createdUserId}`);
       } catch (error) {
         console.error("Error deleting created user:", error.message);
       }
