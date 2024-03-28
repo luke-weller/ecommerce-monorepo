@@ -28,6 +28,12 @@ class Category {
     const { rows } = await pool.query(query, values);
     return rows[0];
   }
+
+  static async getAllCategories() {
+    const query = "SELECT * FROM categories";
+    const { rows } = await pool.query(query);
+    return rows;
+  }
 }
 
 module.exports = Category;

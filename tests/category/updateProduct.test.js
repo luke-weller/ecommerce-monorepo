@@ -19,7 +19,7 @@ describe("Update Category API", function () {
   });
 
   after(async function () {
-    await categoryTeardown(createdCategory);
+    await categoryTeardown(createdCategory.id);
   });
 
   it("should update an existing category and return the updated data", async function () {
