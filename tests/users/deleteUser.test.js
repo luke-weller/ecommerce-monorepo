@@ -21,8 +21,6 @@ describe("Delete User API", function () {
       .request(apiUrl)
       .delete(`/${createdUser.newUser.id}`);
 
-    console.log(response.status);
-
     // Assert:
     expect(response).to.have.status(202);
 
