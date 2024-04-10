@@ -7,6 +7,7 @@ const productsRoutes = require("./routes/products");
 const usersRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
 const categoryRoutes = require("./routes/category");
+const cartRoutes = require("./routes/cart");
 
 const app = express();
 const port = process.env.DEV_PORT;
@@ -28,6 +29,7 @@ app.use("/products", productsRoutes);
 app.use("/users", usersRoutes);
 app.use("/auth", authRoutes);
 app.use("/category", categoryRoutes);
+app.use("/cart", cartRoutes);
 
 app.get("/", (req, res) => {
   const apiInfo = {
