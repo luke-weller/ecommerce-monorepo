@@ -15,15 +15,19 @@ describe("Get User by Email API", function () {
   });
 
   after(async function () {
-    await userTeardown(createdUser.id);
+    await userTeardown(createdUser.newUser.id);
   });
 
   it("should retrive a user when a valid email is provided", async function () {
     // Act
-    const response = await chai.request(apiUrl).get(`/${createdUser.email}`);
+    const response = await chai
+      .request(apiUrl)
+      .get(`/${createdUser.newUser.email}`);
 
     // Assert
     expect(response).to.have.status(200);
-    expect(response.body).to.have.property("email").equal(createdUser.email);
+    expect(response.body)
+      .to.have.property("email")
+      .equal(createdUser.newUser.email);
   });
 });

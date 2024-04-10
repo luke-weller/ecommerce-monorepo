@@ -8,7 +8,7 @@ chai.use(chaiHttp);
 
 const apiUrl = "http://localhost:8080/users";
 
-describe("Delete Users API", function () {
+describe("Delete User API", function () {
   let createdUser;
 
   before(async function () {
@@ -17,7 +17,11 @@ describe("Delete Users API", function () {
 
   it("should delete an existing user and return a 202 status", async function () {
     // Act:
-    const response = await chai.request(apiUrl).delete(`/${createdUser.id}`);
+    const response = await chai
+      .request(apiUrl)
+      .delete(`/${createdUser.newUser.id}`);
+
+    console.log(response.status);
 
     // Assert:
     expect(response).to.have.status(202);

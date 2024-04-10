@@ -27,7 +27,7 @@ describe("Update Users API", function () {
     // Act:
     const response = await chai
       .request(apiUrl)
-      .put(`/${createdUser.id}`)
+      .put(`/${createdUser.newUser.id}`)
       .send(updatedUserData);
 
     // Assert:

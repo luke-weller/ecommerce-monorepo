@@ -10,11 +10,10 @@ const userApiUrl = "http://localhost:8080/users/";
 
 describe("Login API", function () {
   let createdUserId;
-  let response;
   let userData;
 
   before(async function () {
-    userData = await mockUserData();
+    userData = mockUserData();
     const createUserResponse = await chai
       .request(userApiUrl)
       .post("/register")
@@ -34,24 +33,31 @@ describe("Login API", function () {
 
   it("should return a 200 response after successfully logging in", async function () {
     // Act:
-    response = await chai.request(loginApiUrl).post("/").send(userData);
+    const response = await chai.request(loginApiUrl).post("/").send(userData);
 
     // Assert:
     expect(response).to.have.status(200);
-    expect(response).to.be.an("object");
-    expect(response.body).to.have.all.keys(["message", "user"]);
+    expect(response.body)
+      .to.have.property("message")
+      .to.equal("Login successful");
+    expect(response.body).to.have.property("user").to.be.an("object");
 
-    expect(response.body.user.email).to.equal(userData.email);
-    expect(response.body.user.email).to.be.a("string");
-    expect(response.body.user.email).to.not.be.empty;
+    const { user, token } = response.body;
 
-    expect(response.body.user.first_name).to.not.be.undefined;
-    expect(response.body.user.first_name).to.be.a("string");
-    expect(response.body.user.first_name).to.not.be.empty;
+    expect(user).to.have.all.keys([
+      "id",
+      "email",
+      "first_name",
+      "last_name",
+      "created_at",
+      "password",
+    ]);
+    expect(user.email).to.equal(userData.email);
+    expect(user.email).to.be.a("string").that.is.not.empty;
+    expect(user.first_name).to.be.a("string").that.is.not.empty;
+    expect(user.last_name).to.be.a("string").that.is.not.empty;
 
-    expect(response.body.user.last_name).to.not.be.undefined;
-    expect(response.body.user.last_name).to.be.a("string");
-    expect(response.body.user.last_name).to.not.be.empty;
+    expect(token).to.be.a("string").that.is.not.empty;
   });
 
   it("should return 401 for invalid email", async function () {

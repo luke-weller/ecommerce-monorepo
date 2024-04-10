@@ -20,12 +20,12 @@ describe("Register user API", function () {
     // Act:
     mockUser = mockUserData();
     const response = await chai.request(apiUrl).post("/").send(mockUser);
-    createdUserId = response.body.id;
+    createdUserId = response.body.newUser.id;
 
     // Assert:
     expect(response).to.have.status(201);
     expect(response.body).to.be.an("object");
-    expect(response.body).to.have.all.keys([
+    expect(response.body.newUser).to.have.all.keys([
       "id",
       "email",
       "password",
@@ -33,8 +33,20 @@ describe("Register user API", function () {
       "last_name",
       "created_at",
     ]);
-    expect(response.body.email).to.equal(mockUser.email);
-    expect(response.body.first_name).to.equal(mockUser.first_name);
-    expect(response.body.last_name).to.equal(mockUser.last_name);
+    expect(response.body.newUser.email).to.equal(mockUser.email);
+    expect(response.body.newUser.first_name).to.equal(mockUser.first_name);
+    expect(response.body.newUser.last_name).to.equal(mockUser.last_name);
+    expect(response.body.token).to.be.a("string");
+  });
+
+  it("should not register a user with an email that already exists", async function () {
+    // Act:
+    const response = await chai.request(apiUrl).post("/").send(mockUser);
+
+    // Assert:
+    expect(response).to.have.status(400);
+    expect(response.body).to.be.an("object");
+    expect(response.body).to.have.property("error");
+    expect(response.body.error).to.equal("User with this email already exists");
   });
 });
