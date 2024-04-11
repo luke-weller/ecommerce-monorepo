@@ -17,7 +17,7 @@ describe("Update Users API", function () {
   });
 
   after(async function () {
-    await userTeardown(createdUser);
+    await userTeardown(createdUser.newUser.id);
   });
 
   it("should update an existing user and return the updated data", async function () {

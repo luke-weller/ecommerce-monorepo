@@ -16,6 +16,13 @@ class Cart {
     const { rows } = await pool.query(query, values);
     return rows[0];
   }
+
+  static async deleteCart(cartId) {
+    const query = "DELETE FROM cart WHERE id = $1 RETURNING *";
+    const values = [cartId];
+    const { rows } = await pool.query(query, values);
+    return rows[0];
+  }
 }
 
 module.exports = Cart;

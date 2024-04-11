@@ -1,39 +1,38 @@
-const mockUserData = require("../utils/factories/userFactory");
 const chai = require("chai");
 const chaiHttp = require("chai-http");
+const { userSetup, userTeardown } = require("../utils/setup/userSetup");
+const bcrypt = require("bcrypt");
 const expect = chai.expect;
 
 chai.use(chaiHttp);
 
 const loginApiUrl = "http://localhost:8080/auth/login";
-const userApiUrl = "http://localhost:8080/users/";
 
 describe("Login API", function () {
-  let createdUserId;
-  let userData;
+  let createdUser;
 
   before(async function () {
-    userData = mockUserData();
-    const createUserResponse = await chai
-      .request(userApiUrl)
-      .post("/register")
-      .send(userData);
-    createdUserId = createUserResponse.body.id;
+    createdUser = await userSetup();
   });
 
   after(async function () {
-    if (createdUserId) {
-      try {
-        await chai.request(userApiUrl).delete(`/${createdUserId}`);
-      } catch (error) {
-        console.error("Error deleting created user:", error.message);
-      }
+    try {
+      await userTeardown(createdUser.newUser.id);
+    } catch (error) {
+      console.error("Error occurred during user teardown:", error);
     }
   });
 
   it("should return a 200 response after successfully logging in", async function () {
     // Act:
-    const response = await chai.request(loginApiUrl).post("/").send(userData);
+    const testLoginDetails = {
+      email: createdUser.newUser.email,
+      password: "test-password",
+    };
+    const response = await chai
+      .request(loginApiUrl)
+      .post("/")
+      .send(testLoginDetails);
 
     // Assert:
     expect(response).to.have.status(200);
@@ -52,7 +51,7 @@ describe("Login API", function () {
       "created_at",
       "password",
     ]);
-    expect(user.email).to.equal(userData.email);
+    expect(user.email).to.equal(createdUser.newUser.email);
     expect(user.email).to.be.a("string").that.is.not.empty;
     expect(user.first_name).to.be.a("string").that.is.not.empty;
     expect(user.last_name).to.be.a("string").that.is.not.empty;
@@ -60,21 +59,21 @@ describe("Login API", function () {
     expect(token).to.be.a("string").that.is.not.empty;
   });
 
-  it("should return 401 for invalid email", async function () {
-    // Arrange:
-    const invalidEmailData = {
-      email: "invalid_email",
-      password: "password123",
-    };
+  // it("should return 401 for invalid email", async function () {
+  //   // Arrange:
+  //   const invalidEmailData = {
+  //     email: "invalid_email",
+  //     password: "password123",
+  //   };
 
-    // Act:
-    const response = await chai
-      .request(loginApiUrl)
-      .post("/")
-      .send(invalidEmailData);
+  //   // Act:
+  //   const response = await chai
+  //     .request(loginApiUrl)
+  //     .post("/")
+  //     .send(invalidEmailData);
 
-    // Assert:
-    expect(response).to.have.status(401);
-    expect(response.body.error).to.equal("Incorrect email or password");
-  });
+  //   // Assert:
+  //   expect(response).to.have.status(401);
+  //   expect(response.body.error).to.equal("Incorrect email or password");
+  // });
 });

@@ -27,7 +27,7 @@ describe("Delete User API", function () {
     try {
       const getUserResponse = await chai
         .request(apiUrl)
-        .get(`/${createdUser.id}`);
+        .get(`/${createdUser.newUser.id}`);
       expect(getUserResponse).to.have.status(404);
     } catch (error) {
       expect(error.response).to.have.status(404);

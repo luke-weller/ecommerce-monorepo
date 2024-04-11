@@ -6,11 +6,13 @@ chai.use(chaiHttp);
 
 const apiUrl = "http://localhost:8080";
 
-const cartSetup = async () => {
+const cartSetup = async (token) => {
+  const cartData = mockCartData();
   const response = await chai
     .request(apiUrl)
     .post("/cart")
-    .send(mockCartData());
+    .set("Authorization", `Bearer ${token}`)
+    .send(cartData);
 
   if (response.status === 201) {
     return response.body;
@@ -19,10 +21,13 @@ const cartSetup = async () => {
   }
 };
 
-const cartTeardown = async (cartId) => {
+const cartTeardown = async (cartId, token) => {
   if (cartId) {
     try {
-      await chai.request(apiUrl).delete(`/cart/${cart}`);
+      await chai
+        .request(apiUrl)
+        .delete(`/cart/${cartId}`)
+        .set("Authorization", `Bearer ${token}`);
     } catch (error) {
       console.error("Error deleting created cart:", error.message);
     }
