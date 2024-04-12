@@ -1,5 +1,5 @@
 const { userSetup, userTeardown } = require("../utils/setup/userSetup");
-const { cartSetup, cartTeardown } = require("../utils/setup/cartSetup");
+const { cartSetup } = require("../utils/setup/cartSetup");
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 
@@ -8,22 +8,22 @@ const expect = chai.expect;
 
 const apiUrl = "http://localhost:8080";
 
+let token;
+let createdUser;
+let createdCart;
+
+before(async () => {
+  createdUser = await userSetup();
+  token = createdUser.token;
+
+  createdCart = await cartSetup(token);
+});
+
+after(async () => {
+  await userTeardown(createdUser.newUser.id);
+});
+
 describe("delete cart api", () => {
-  let token;
-  let createdUser;
-  let createdCart;
-
-  before(async () => {
-    createdUser = await userSetup();
-    token = createdUser.token;
-
-    createdCart = await cartSetup(token);
-  });
-
-  after(async () => {
-    await userTeardown(createdUser.newUser.id);
-  });
-
   it("should delete an existing cart", async () => {
     const response = await chai
       .request(apiUrl)
