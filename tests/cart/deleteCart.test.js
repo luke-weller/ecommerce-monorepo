@@ -16,7 +16,7 @@ before(async () => {
   createdUser = await userSetup();
   token = createdUser.token;
 
-  createdCart = await cartSetup(token);
+  createdCart = await cartSetup(token, createdUser.newUser.id);
 });
 
 after(async () => {

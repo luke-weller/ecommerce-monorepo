@@ -14,22 +14,17 @@ let createdUser;
 let createdCart;
 
 before(async () => {
-  try {
-    createdUser = await userSetup();
-    token = createdUser.token;
-  } catch (error) {
-    console.error("Error setting up user:", error);
-  }
+  createdUser = await userSetup();
+  token = createdUser.token;
 });
 
 after(async () => {
-  try {
-    await cartTeardown(createdCart.id, token);
-    console.log(`cart taredown id: ${createdCart.id}`);
-    await userTeardown(createdUser.newUser.id);
-  } catch (error) {
-    console.error("Error tearing down cart and user:", error);
-  }
+  await userTeardown(createdUser.newUser.id);
+});
+
+after(async () => {
+  await cartTeardown(createdCart.id, token);
+  await userTeardown(createdUser.newUser.id);
 });
 
 describe("createCart", () => {

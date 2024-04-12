@@ -23,6 +23,12 @@ class Cart {
     const { rows } = await pool.query(query, values);
     return rows[0];
   }
+
+  static async getCartById(cartId) {
+    const query = "SELECT * FROM cart WHERE id = $1";
+    const { rows } = await pool.query(query, [cartId]);
+    return rows[0];
+  }
 }
 
 module.exports = Cart;

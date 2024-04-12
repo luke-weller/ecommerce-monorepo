@@ -6,8 +6,8 @@ chai.use(chaiHttp);
 
 const apiUrl = "http://localhost:8080";
 
-const cartSetup = async (token) => {
-  const cartData = mockCartData();
+const cartSetup = async (token, userId) => {
+  const cartData = mockCartData(userId);
   const response = await chai
     .request(apiUrl)
     .post("/cart")
