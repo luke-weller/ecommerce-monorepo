@@ -3,7 +3,7 @@
 ## Setup the server
 
 1. Clone the reposatory to a local place on your computer.
-2. Run `npm install` to install the packages.
+2. Run `yarn install` to install the packages.
 3. Download and setup postgres and create a database.
 4. Add a .ENV file to directory root, copy the code snippet below and update the variables with those from your development environment.
 
@@ -23,3 +23,5 @@ To generate your secret key variable, run the script by executing `node scripts/
 ## starting the project
 
 1. once you have completed the setup steps you can run `yarn start` which will fire up both the frontend and the server
+2. Confirm everything is working correctly by running `yarn test`
+3. you can view the frontend via http://localhost:3000/ and the APIs via http://localhost:8080/

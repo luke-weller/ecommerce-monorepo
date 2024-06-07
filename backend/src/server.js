@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const session = require("express-session");
 const passport = require("../config/passport-config");
 const bodyParser = require("body-parser");
@@ -12,9 +13,18 @@ const cartRoutes = require("./routes/cart");
 const app = express();
 const port = process.env.DEV_PORT;
 
+const corsOptions = {
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+
+require("dotenv").config();
+
 app.use(
   session({
-    secret: "your_secret_key",
+    secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: false,
   })
