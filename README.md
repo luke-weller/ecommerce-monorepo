@@ -20,4 +20,6 @@ To generate your secret key variable, run the script by executing `node scripts/
 
 5. Once you have completed the previous steps you can run `npm-test` to ensure you are setup correctly and that the tests are passing.
 
-## Hit the endpoints
+## starting the project
+
+1. once you have completed the setup steps you can run `yarn start` which will fire up both the frontend and the server

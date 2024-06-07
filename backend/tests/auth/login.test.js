@@ -3,6 +3,7 @@ const chaiHttp = require("chai-http");
 const { userSetup, userTeardown } = require("../utils/setup/userSetup");
 const bcrypt = require("bcrypt");
 const expect = chai.expect;
+const jwt = require("jsonwebtoken");
 
 chai.use(chaiHttp);
 
@@ -40,8 +41,13 @@ describe("Login API", function () {
       .to.have.property("message")
       .to.equal("Login successful");
     expect(response.body).to.have.property("user").to.be.an("object");
+    expect(response.body).to.have.property("token").to.be.a("string");
 
     const { user, token } = response.body;
+
+    const decodedToken = jwt.decode(token);
+    expect(decodedToken.payload).to.have.property("userId").to.equal(user.id);
+    expect(decodedToken.payload).to.have.property("email").to.equal(user.email);
 
     expect(user).to.have.all.keys([
       "id",

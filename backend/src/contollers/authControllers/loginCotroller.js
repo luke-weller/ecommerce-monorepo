@@ -16,7 +16,13 @@ exports.login = (req, res, next) => {
       if (err) {
         return res.status(500).json({ error: "Internal server error" });
       }
-      const token = jwt.sign({ userId: user.id }, secretKey, {
+
+      const payload = {
+        userId: user.id,
+        email: user.email,
+      };
+
+      const token = jwt.sign({ payload }, secretKey, {
         expiresIn: "1h",
       });
       return res.status(200).json({ message: "Login successful", user, token });

@@ -38,7 +38,6 @@ describe("createCart", () => {
       .send(createdCart);
 
     createdCart = response.body;
-    console.log(`Created cart: ${createdCart.id}`);
 
     expect(response).to.have.status(201);
     expect(response.body).to.be.an("object");

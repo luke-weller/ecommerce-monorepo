@@ -1,7 +1,7 @@
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const mockProductData = require("../factories/productFactory");
-const { categorySetup, categoryTeardown } = require("../setup/categorySetup");
+const { categorySetup, categoryTeardown } = require("./categorySetup");
 
 chai.use(chaiHttp);
 
