@@ -11,6 +11,9 @@ const categoryRoutes = require("./routes/category");
 const cartRoutes = require("./routes/cart");
 
 const app = express();
+
+require("dotenv").config();
+
 const port = process.env.DEV_PORT;
 
 const corsOptions = {
@@ -19,8 +22,6 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
-require("dotenv").config();
 
 app.use(
   session({
