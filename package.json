@@ -7,7 +7,9 @@
     "start:backend": "nodemon backend/src/server.js",
     "start:frontend": "cd frontend && yarn start",
     "start": "concurrently \"yarn run start:backend\" \"yarn run start:frontend\"",
-    "test": "mocha backend/tests/**/*.js"
+    "test": "mocha backend/tests/**/*.js",
+    "deploy:infra": "cd infrastructure && cdk deploy TestDatabaseStack && cd -",
+    "destroy:infra": "cd infrastructure && cdk destroy TestDatabaseStack && cd -"
   },
   "keywords": [],
   "author": "",

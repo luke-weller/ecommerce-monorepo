@@ -1,0 +1,775 @@
+{
+  "version": "36.0.0",
+  "artifacts": {
+    "TestDatabaseStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "TestDatabaseStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "TestDatabaseStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://637423186947/us-east-2",
+      "properties": {
+        "templateFile": "TestDatabaseStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::637423186947:role/cdk-hnb659fds-deploy-role-637423186947-us-east-2",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::637423186947:role/cdk-hnb659fds-cfn-exec-role-637423186947-us-east-2",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-637423186947-us-east-2/c9c61099db49e9d8792f8552564acce9b9e947cc2bec4ed652b937b96e39bc34.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "TestDatabaseStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::637423186947:role/cdk-hnb659fds-lookup-role-637423186947-us-east-2",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "TestDatabaseStack.assets"
+      ],
+      "metadata": {
+        "/TestDatabaseStack/EcommerceVPC/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPC0C8C3771"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PublicSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet1Subnet0AFBA6BF"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PublicSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet1RouteTable8357AAEA"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PublicSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet1RouteTableAssociation8F09899D"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PublicSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet1DefaultRoute1D26CE18"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PublicSubnet1/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet1EIP216F43BF"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PublicSubnet1/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet1NATGateway56B50EFC"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PublicSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet2Subnet648A4090"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PublicSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet2RouteTable3C1443CB"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PublicSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet2RouteTableAssociation41FAADC7"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PublicSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet2DefaultRouteF7734C2D"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PublicSubnet2/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet2EIP1BAA72AD"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PublicSubnet2/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet2NATGateway5AB42647"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PublicSubnet3/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet3Subnet6083921E"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PublicSubnet3/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet3RouteTableBE9B587C"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PublicSubnet3/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet3RouteTableAssociationEAC3590D"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PublicSubnet3/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet3DefaultRoute9A2AE282"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PublicSubnet3/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet3EIPFA79E37C"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PublicSubnet3/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet3NATGateway2EF281FC"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PrivateSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet1SubnetB008B123"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PrivateSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet1RouteTableE54EE6BB"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PrivateSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PrivateSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PrivateSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet2Subnet9415FEB9"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PrivateSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet2RouteTableEB68C2EE"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PrivateSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PrivateSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PrivateSubnet3/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet3SubnetAF1A59B0"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PrivateSubnet3/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet3RouteTable18773908"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PrivateSubnet3/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet3RouteTableAssociation0D3FC088"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/PrivateSubnet3/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet3DefaultRoute4F688168"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCIGW14978A73"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCVPCGW4CCAFB9E"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceVPC/RestrictDefaultSecurityGroupCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCRestrictDefaultSecurityGroupCustomResource36AC4252"
+          }
+        ],
+        "/TestDatabaseStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0"
+          }
+        ],
+        "/TestDatabaseStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E"
+          }
+        ],
+        "/TestDatabaseStack/EcommerceDatabase": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "EcommerceDatabaseB13D5304"
+            }
+          }
+        ],
+        "/TestDatabaseStack/EcommerceDatabase/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceDatabaseB13D5304"
+          }
+        ],
+        "/TestDatabaseStack/CartTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "CartTableD1105F87"
+            }
+          }
+        ],
+        "/TestDatabaseStack/CartTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CartTableD1105F87"
+          }
+        ],
+        "/TestDatabaseStack/CartItemsTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "CartItemsTableDB0065B7"
+            }
+          }
+        ],
+        "/TestDatabaseStack/CartItemsTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CartItemsTableDB0065B7"
+          }
+        ],
+        "/TestDatabaseStack/CategoriesTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "CategoriesTable9FFF5A67"
+            }
+          }
+        ],
+        "/TestDatabaseStack/CategoriesTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CategoriesTable9FFF5A67"
+          }
+        ],
+        "/TestDatabaseStack/OrderItemsTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "OrderItemsTable28F97874"
+            }
+          }
+        ],
+        "/TestDatabaseStack/OrderItemsTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OrderItemsTable28F97874"
+          }
+        ],
+        "/TestDatabaseStack/OrdersTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "OrdersTable315BB997"
+            }
+          }
+        ],
+        "/TestDatabaseStack/OrdersTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OrdersTable315BB997"
+          }
+        ],
+        "/TestDatabaseStack/ProductsTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "ProductsTable241ADBFF"
+            }
+          }
+        ],
+        "/TestDatabaseStack/ProductsTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ProductsTable241ADBFF"
+          }
+        ],
+        "/TestDatabaseStack/UsersTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "UsersTable9725E9C8"
+            }
+          }
+        ],
+        "/TestDatabaseStack/UsersTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UsersTable9725E9C8"
+          }
+        ],
+        "/TestDatabaseStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/TestDatabaseStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/TestDatabaseStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "TestDatabaseStack"
+    },
+    "ProdDatabaseStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "ProdDatabaseStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "ProdDatabaseStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://637423186947/us-east-2",
+      "properties": {
+        "templateFile": "ProdDatabaseStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::637423186947:role/cdk-hnb659fds-deploy-role-637423186947-us-east-2",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::637423186947:role/cdk-hnb659fds-cfn-exec-role-637423186947-us-east-2",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-637423186947-us-east-2/4055180ca2f02b0bcbd26137c2effd32bbd5cbd4dc9be13054d42b380c1ee22a.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "ProdDatabaseStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::637423186947:role/cdk-hnb659fds-lookup-role-637423186947-us-east-2",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "ProdDatabaseStack.assets"
+      ],
+      "metadata": {
+        "/ProdDatabaseStack/EcommerceVPC/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPC0C8C3771"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PublicSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet1Subnet0AFBA6BF"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PublicSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet1RouteTable8357AAEA"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PublicSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet1RouteTableAssociation8F09899D"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PublicSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet1DefaultRoute1D26CE18"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PublicSubnet1/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet1EIP216F43BF"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PublicSubnet1/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet1NATGateway56B50EFC"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PublicSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet2Subnet648A4090"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PublicSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet2RouteTable3C1443CB"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PublicSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet2RouteTableAssociation41FAADC7"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PublicSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet2DefaultRouteF7734C2D"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PublicSubnet2/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet2EIP1BAA72AD"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PublicSubnet2/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet2NATGateway5AB42647"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PublicSubnet3/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet3Subnet6083921E"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PublicSubnet3/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet3RouteTableBE9B587C"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PublicSubnet3/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet3RouteTableAssociationEAC3590D"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PublicSubnet3/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet3DefaultRoute9A2AE282"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PublicSubnet3/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet3EIPFA79E37C"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PublicSubnet3/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPublicSubnet3NATGateway2EF281FC"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PrivateSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet1SubnetB008B123"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PrivateSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet1RouteTableE54EE6BB"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PrivateSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet1RouteTableAssociation6592DCE6"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PrivateSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet1DefaultRoute5EBF0D71"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PrivateSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet2Subnet9415FEB9"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PrivateSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet2RouteTableEB68C2EE"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PrivateSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet2RouteTableAssociationD39D3059"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PrivateSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet2DefaultRoute08F167D7"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PrivateSubnet3/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet3SubnetAF1A59B0"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PrivateSubnet3/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet3RouteTable18773908"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PrivateSubnet3/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet3RouteTableAssociation0D3FC088"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/PrivateSubnet3/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCPrivateSubnet3DefaultRoute4F688168"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCIGW14978A73"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCVPCGW4CCAFB9E"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceVPC/RestrictDefaultSecurityGroupCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceVPCRestrictDefaultSecurityGroupCustomResource36AC4252"
+          }
+        ],
+        "/ProdDatabaseStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0"
+          }
+        ],
+        "/ProdDatabaseStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E"
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceDatabase": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "EcommerceDatabaseB13D5304"
+            }
+          }
+        ],
+        "/ProdDatabaseStack/EcommerceDatabase/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "EcommerceDatabaseB13D5304"
+          }
+        ],
+        "/ProdDatabaseStack/CartTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "CartTableD1105F87"
+            }
+          }
+        ],
+        "/ProdDatabaseStack/CartTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CartTableD1105F87"
+          }
+        ],
+        "/ProdDatabaseStack/CartItemsTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "CartItemsTableDB0065B7"
+            }
+          }
+        ],
+        "/ProdDatabaseStack/CartItemsTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CartItemsTableDB0065B7"
+          }
+        ],
+        "/ProdDatabaseStack/CategoriesTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "CategoriesTable9FFF5A67"
+            }
+          }
+        ],
+        "/ProdDatabaseStack/CategoriesTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CategoriesTable9FFF5A67"
+          }
+        ],
+        "/ProdDatabaseStack/OrderItemsTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "OrderItemsTable28F97874"
+            }
+          }
+        ],
+        "/ProdDatabaseStack/OrderItemsTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OrderItemsTable28F97874"
+          }
+        ],
+        "/ProdDatabaseStack/OrdersTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "OrdersTable315BB997"
+            }
+          }
+        ],
+        "/ProdDatabaseStack/OrdersTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "OrdersTable315BB997"
+          }
+        ],
+        "/ProdDatabaseStack/ProductsTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "ProductsTable241ADBFF"
+            }
+          }
+        ],
+        "/ProdDatabaseStack/ProductsTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ProductsTable241ADBFF"
+          }
+        ],
+        "/ProdDatabaseStack/UsersTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "UsersTable9725E9C8"
+            }
+          }
+        ],
+        "/ProdDatabaseStack/UsersTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UsersTable9725E9C8"
+          }
+        ],
+        "/ProdDatabaseStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/ProdDatabaseStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/ProdDatabaseStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "ProdDatabaseStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

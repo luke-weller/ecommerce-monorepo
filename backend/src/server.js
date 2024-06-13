@@ -1,23 +1,23 @@
-const express = require("express");
-const cors = require("cors");
-const session = require("express-session");
-const passport = require("../config/passport-config");
-const bodyParser = require("body-parser");
+const express = require('express');
+const cors = require('cors');
+const session = require('express-session');
+const passport = require('../config/passport-config');
+const bodyParser = require('body-parser');
 
-const productsRoutes = require("./routes/products");
-const usersRoutes = require("./routes/users");
-const authRoutes = require("./routes/auth");
-const categoryRoutes = require("./routes/category");
-const cartRoutes = require("./routes/cart");
+const productsRoutes = require('./routes/products');
+const usersRoutes = require('./routes/users');
+const authRoutes = require('./routes/auth');
+const categoryRoutes = require('./routes/category');
+const cartRoutes = require('./routes/cart');
 
 const app = express();
 
-require("dotenv").config();
+require('dotenv').config();
 
 const port = process.env.DEV_PORT;
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: 'http://localhost:3000',
   optionsSuccessStatus: 200,
 };
 
@@ -36,26 +36,26 @@ app.use(passport.session());
 
 app.use(bodyParser.json());
 
-app.use("/products", productsRoutes);
-app.use("/users", usersRoutes);
-app.use("/auth", authRoutes);
-app.use("/category", categoryRoutes);
-app.use("/cart", cartRoutes);
+app.use('/products', productsRoutes);
+app.use('/users', usersRoutes);
+app.use('/auth', authRoutes);
+app.use('/category', categoryRoutes);
+app.use('/cart', cartRoutes);
 
-app.get("/", (req, res) => {
+app.get('/', (req, res) => {
   const apiInfo = {
-    name: "ecommerce api",
-    version: "1.0.0",
-    description: "This api provides REST API requests to an ecommerce project",
+    name: 'ecommerce api',
+    version: '1.0.0',
+    description: 'This api provides REST API requests to an ecommerce project',
     endpoints: {
-      "GET /products": "get a list of all products",
-      "GET /products:id": "get a spesific product",
-      "POST /products/": "post a new product to the database",
-      "PUT /products/:id": "update a product in the database",
-      "DELETE /products/:id": "delete a product from the database",
+      'GET /products': 'get a list of all products',
+      'GET /products:id': 'get a spesific product',
+      'POST /products/': 'post a new product to the database',
+      'PUT /products/:id': 'update a product in the database',
+      'DELETE /products/:id': 'delete a product from the database',
     },
     authentication:
-      "How to authenticate with the API (e.g., API keys, OAuth, etc.)",
+      'How to authenticate with the API (e.g., API keys, OAuth, etc.)',
   };
 
   res.json(apiInfo);
