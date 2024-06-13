@@ -16,7 +16,8 @@
   "license": "ISC",
   "workspaces": [
     "backend",
-    "frontend"
+    "frontend",
+    "infrastructure"
   ],
   "private": true,
   "devDependencies": {

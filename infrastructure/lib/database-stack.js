@@ -18,17 +18,6 @@ class DatabaseStack extends Stack {
 
     const vpc = new aws_ec2.Vpc(this, 'EcommerceVPC');
 
-    const database = new Table(this, 'EcommerceDatabase', {
-      tableName: 'ecommerce',
-      partitionKey: { name: 'id', type: AttributeType.STRING },
-      removalPolicy: RemovalPolicy.DESTROY,
-      billingMode: BillingMode.PAY_PER_REQUEST,
-      encryption: TableEncryption.AWS_MANAGED,
-      pointInTimeRecovery: true,
-      timeToLiveAttribute: 'ttl',
-      vpc,
-    });
-
     // Add tables
     const cartTable = new Table(this, 'CartTable', {
       tableName: 'cart',

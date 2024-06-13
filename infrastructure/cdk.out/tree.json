@@ -947,61 +947,6 @@
               "version": "2.145.0"
             }
           },
-          "EcommerceDatabase": {
-            "id": "EcommerceDatabase",
-            "path": "TestDatabaseStack/EcommerceDatabase",
-            "children": {
-              "Resource": {
-                "id": "Resource",
-                "path": "TestDatabaseStack/EcommerceDatabase/Resource",
-                "attributes": {
-                  "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
-                  "aws:cdk:cloudformation:props": {
-                    "attributeDefinitions": [
-                      {
-                        "attributeName": "id",
-                        "attributeType": "S"
-                      }
-                    ],
-                    "billingMode": "PAY_PER_REQUEST",
-                    "keySchema": [
-                      {
-                        "attributeName": "id",
-                        "keyType": "HASH"
-                      }
-                    ],
-                    "pointInTimeRecoverySpecification": {
-                      "pointInTimeRecoveryEnabled": true
-                    },
-                    "sseSpecification": {
-                      "sseEnabled": true
-                    },
-                    "tableName": "ecommerce",
-                    "timeToLiveSpecification": {
-                      "attributeName": "ttl",
-                      "enabled": true
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_dynamodb.CfnTable",
-                  "version": "2.145.0"
-                }
-              },
-              "ScalingRole": {
-                "id": "ScalingRole",
-                "path": "TestDatabaseStack/EcommerceDatabase/ScalingRole",
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.Resource",
-                  "version": "2.145.0"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "aws-cdk-lib.aws_dynamodb.Table",
-              "version": "2.145.0"
-            }
-          },
           "CartTable": {
             "id": "CartTable",
             "path": "TestDatabaseStack/CartTable",
@@ -2399,61 +2344,6 @@
             },
             "constructInfo": {
               "fqn": "aws-cdk-lib.CustomResourceProviderBase",
-              "version": "2.145.0"
-            }
-          },
-          "EcommerceDatabase": {
-            "id": "EcommerceDatabase",
-            "path": "ProdDatabaseStack/EcommerceDatabase",
-            "children": {
-              "Resource": {
-                "id": "Resource",
-                "path": "ProdDatabaseStack/EcommerceDatabase/Resource",
-                "attributes": {
-                  "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
-                  "aws:cdk:cloudformation:props": {
-                    "attributeDefinitions": [
-                      {
-                        "attributeName": "id",
-                        "attributeType": "S"
-                      }
-                    ],
-                    "billingMode": "PAY_PER_REQUEST",
-                    "keySchema": [
-                      {
-                        "attributeName": "id",
-                        "keyType": "HASH"
-                      }
-                    ],
-                    "pointInTimeRecoverySpecification": {
-                      "pointInTimeRecoveryEnabled": true
-                    },
-                    "sseSpecification": {
-                      "sseEnabled": true
-                    },
-                    "tableName": "ecommerce",
-                    "timeToLiveSpecification": {
-                      "attributeName": "ttl",
-                      "enabled": true
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_dynamodb.CfnTable",
-                  "version": "2.145.0"
-                }
-              },
-              "ScalingRole": {
-                "id": "ScalingRole",
-                "path": "ProdDatabaseStack/EcommerceDatabase/ScalingRole",
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.Resource",
-                  "version": "2.145.0"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "aws-cdk-lib.aws_dynamodb.Table",
               "version": "2.145.0"
             }
           },

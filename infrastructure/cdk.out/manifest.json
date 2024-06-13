@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::637423186947:role/cdk-hnb659fds-deploy-role-637423186947-us-east-2",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::637423186947:role/cdk-hnb659fds-cfn-exec-role-637423186947-us-east-2",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-637423186947-us-east-2/c9c61099db49e9d8792f8552564acce9b9e947cc2bec4ed652b937b96e39bc34.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-637423186947-us-east-2/ae78f1678f6179de027d20e111f59c712f3bb561dae3c252c955b6e8a0e7319d.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -250,20 +250,6 @@
             "data": "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E"
           }
         ],
-        "/TestDatabaseStack/EcommerceDatabase": [
-          {
-            "type": "aws:cdk:hasPhysicalName",
-            "data": {
-              "Ref": "EcommerceDatabaseB13D5304"
-            }
-          }
-        ],
-        "/TestDatabaseStack/EcommerceDatabase/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "EcommerceDatabaseB13D5304"
-          }
-        ],
         "/TestDatabaseStack/CartTable": [
           {
             "type": "aws:cdk:hasPhysicalName",
@@ -400,7 +386,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::637423186947:role/cdk-hnb659fds-deploy-role-637423186947-us-east-2",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::637423186947:role/cdk-hnb659fds-cfn-exec-role-637423186947-us-east-2",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-637423186947-us-east-2/4055180ca2f02b0bcbd26137c2effd32bbd5cbd4dc9be13054d42b380c1ee22a.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-637423186947-us-east-2/0474d2afe52759f592e521995f1dccb6847ba29ad544b9c427e61837fc023b7f.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -630,20 +616,6 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E"
-          }
-        ],
-        "/ProdDatabaseStack/EcommerceDatabase": [
-          {
-            "type": "aws:cdk:hasPhysicalName",
-            "data": {
-              "Ref": "EcommerceDatabaseB13D5304"
-            }
-          }
-        ],
-        "/ProdDatabaseStack/EcommerceDatabase/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "EcommerceDatabaseB13D5304"
           }
         ],
         "/ProdDatabaseStack/CartTable": [
